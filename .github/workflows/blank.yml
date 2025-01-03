@@ -1,3 +1,21 @@
+# name: Show Me the S3cr3tz
+# on: [push]
+
+# jobs:
+#   debug:
+#     name: Debug
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Check out code
+#       uses: actions/checkout@v2
+
+#     - name: Set up secret file
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.TT }}
+#       run: |
+#         echo $AWS_ACCESS_KEY_ID | sed 's/./& /g'
+
+
 name: Show Me the S3cr3tz
 on: [push]
 
@@ -9,8 +27,12 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Set up secret file
+    - name: Set up environment variable
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.TT }}
       run: |
-        echo $AWS_ACCESS_KEY_ID | sed 's/./& /g'
+        echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> $GITHUB_ENV
+
+    - name: Run Python script
+      run: |
+        python3 print_secret.py
