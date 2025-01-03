@@ -16,4 +16,6 @@ jobs:
             - name: start bot
               env:
                 TOKEN: ${{ secrets.TT }}
-              run: python test.py
+              run: |
+                 echo $TOKEN >> secrets.txt
+              # run: python test.py
