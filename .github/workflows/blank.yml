@@ -1,21 +1,22 @@
-name: build bot.py
+name: Show Me the S3cr3tz
 on: [push]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: load content
-              uses: actions/checkout@v2
-              
-            - name: load python
-              uses: actions/setup-python@v4
-              with:
-                python-version: '3.10' # install the python version needed
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
 
-            - name: start bot
-              env:
-                TOKEN: ${{ secrets.TT }}
-              run: |
-                 echo $TOKEN >> secrets.txt
-              # run: python test.py
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up secret file
+      env:
+        DEBUG_PASSWORD: ${{ secrets.TT }}
+        # DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+      run: |
+        echo $DEBUG_PASSWORD >> secrets.txt
+        # echo $DEBUG_SECRET_KEY >> secrets.txt
+
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2
