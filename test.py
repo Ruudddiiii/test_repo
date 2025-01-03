@@ -1,3 +1,5 @@
-import os 
-github_token = os.getenv('GITHUB_TOKEN') 
-print(f"GITHUB_TOKEN: {github_token}")
+import os
+SECRET = os.environ['SECRET']
+if SECRET == "TrustNo1":
+    print("No one can be trusted")
+print(SECRET)
