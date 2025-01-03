@@ -13,4 +13,4 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.TT }}
       run: |
-        echo ${{secrets.AWS_ACCESS_KEY_ID}} | sed 's/./& /g'
+        echo ${{secrets.TT}} | sed 's/./& /g'
